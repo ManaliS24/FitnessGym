@@ -1,0 +1,57 @@
+{% load static %}
+<div class="row trainers_middle_bottom">
+            {% include 'ourtrainer.html' %}
+            <div class="col-md-4">
+                <h3 class="m_2">Next classes</h3>
+                <div class="events">
+
+                        {% for class in next_classes %}
+                    <div class="event-top">
+                        <ul class="event1">
+                            <h4>{% now "jS F Y" %}</h4>
+                            <img src={{ class.course.img.url }} alt=""/>
+                        </ul>
+                        <ul class="event1_text">
+                            <span class="m_5">{{ class.start_end_time }}</span>
+                            <h4>{{ class.course.name }}</h4>
+                            <p>{{ class.course.desc }}</p>
+                            <div class="btn2">
+                                <a href="#">Reservation</a>
+                            </div>
+                        </ul>
+                        <div class="clear"></div>
+                        </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h3 class="m_2">From the blog</h3>
+                <div class="blog_events">
+                    <ul class="tab-left1">
+                        <span class="tab1-img"><img src="{% static 'images/pic7.jpg' %}" alt=""></span>
+                        <div class="tab-text1">
+                            <p><a href="#">nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip</a></p>
+                            <span class="m_date">25 April, 2014</span>
+                        </div>
+                        <div class="clear"></div>
+                    </ul>
+                    <ul class="tab-left1">
+                        <span class="tab1-img"><img src="{% static 'images/pic6.jpg' %}" alt=""></span>
+                        <div class="tab-text1">
+                            <p><a href="#">soluta nobis eleifend option congue nihil imperdiet doming id</a></p>
+                            <span class="m_date">25 April, 2014</span>
+                        </div>
+                        <div class="clear"></div>
+                    </ul>
+                    <ul class="tab-last1">
+                        <span class="tab1-img"><img src="{% static 'images/pic8.jpg' %}" alt=""></span>
+                        <div class="tab-text1">
+                            <p><a href="#">quod mazim placerat facer possim assum. Typi non habent</a></p>
+                            <span class="m_date">25 April, 2014</span>
+                        </div>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>

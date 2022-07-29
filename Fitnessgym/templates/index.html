@@ -1,0 +1,198 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+{% load static %}
+
+<html>
+<head>
+<title>Free Gym Website Template | Home :: w3layouts</title>
+<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />-->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+			});
+		});
+	</script>
+<!-- grid-slider -->
+<script type="text/javascript" src="{% static 'js/jquery.mousewheel.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.contentcarousel.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+<!-- //grid-slider -->
+</head>
+<body>
+{% block content %}
+{% csrf_token %}
+ <!-- start header_top -->
+	<div class="header">
+	   <div class="container">
+		  <div class="header-text">
+			<h1>Perfect Fitness</h1>
+			<h2>Best Choice For Your Health</h2>
+			<p>What seems to be impossible today will one day become your warm-up. So let us join in your hand in this Journey.</p>
+			<div class="banner_btn">
+				<a href="/about/">Learn About Us</a>
+			</div>
+		  </div>
+		  <div class="header-arrow">
+		     <a href="#menu" class="class scroll"><span> </span> </a>
+		  </div>
+	    </div>
+	  </div>
+	<!-- end header_top -->
+	<!-- start header_bottom -->
+	  <div class="header-bottom">
+		 <div class="container">
+			<div class="header-bottom_left">
+				<i class="phone"> </i><span>1-222-333-4444</span>
+			</div>
+			<div class="social">	
+			   <ul>	
+				  <li class="facebook"><a href="#"><span> </span></a></li>
+				  <li class="twitter"><a href="#"><span> </span></a></li>
+				  <li class="pinterest"><a href="#"><span> </span></a></li>	
+				  <li class="google"><a href="#"><span> </span></a></li>
+				  <li class="tumblr"><a href="#"><span> </span></a></li>
+				  <li class="instagram"><a href="#"><span> </span></a></li>	
+				  <li class="rss"><a href="#"><span> </span></a></li>							
+			   </ul>
+		   </div>
+		   <div class="clear"></div>
+		</div>
+	  </div>
+	<!-- end header_bottom -->
+	<!-- start menu -->
+    <div class="menu" id="menu">
+	  <div class="container">
+		 <div class="logo">
+			<a href="index.html"><img src="{% static 'images/logo.png' %}" alt=""/></a>
+		 </div>
+			{% include "menu_bar.html" %}
+		 <div class="clear"></div>
+	  </div>
+	</div>
+	<!-- end menu -->
+	 <div class="main">
+	 	 <div class="container">
+			<!-- start content-top -->
+			<div class="row content-top">
+				 <div class="col-md-5">
+				  <img src="{% static 'images/pic.png' %}" class="img-responsive" alt=""/> 
+			     </div>
+				 <div class="col-md-7 content_left_text">
+				   <h3>No Pain, No Gain!</h3>
+				   <p>Exercise not only changes your body. It changes your mind, your attitude and your mood.</p>
+				 </div>
+            </div>
+		 </div>
+		<!-- end content-top -->
+		<div class="container">
+		    {% include 'plans.html' %}
+		  <!-- end content-middle -->
+			{% widthratio courses.count 2 1 as count  %}
+		   <div class="row about">
+		      {% include 'allclasses.html' %}
+				<div class="col-md-4">
+				  <h3 class="m_4">Membership Prices</h3>
+				  <div class="members">
+				   <h4 class="m_3">25% Discount of for all members</h4>
+				   <p>Discount for all membership cards holders on special classes.</p>
+				   <div class="btn1">
+				    <a href="/classes/">More</a>
+			       </div>
+				  </div>
+			    </div>
+			    <div class="clear"></div>
+			</div>
+		    <div class="row content_middle_bottom">
+			    {% include 'ourtrainer.html' %}
+	<h3 class="m_2">Upcoming Class</h3>
+     <div class="col-md-4">
+		 <h4>{% with next_classes_1|first as first_class %}{{ first_class.day_of_week }}{% endwith %}</h4>
+		 <div class="events">
+			{% for next_class in next_classes_1 %}
+		 <div class="event-top">
+			 <ul class="event1">
+				 <img src={{ next_class.course.img.url }} />
+			 </ul>
+			 <ul class="event1_text">
+				 <span class="m_5">h:{{ next_class.start_end_time}}</span>
+	     	 		<h6>{{ next_class.course }}</h6>
+	     	 		<p>{{ next_class.course.desc }}</p>
+	     	 		<div class="btn2">
+					   <a href="/classes/">Register</a>
+					</div>
+	     	 	</ul>
+     	 		<div class="clear"></div>
+     	 	</div>
+			 {% endfor %}
+     	 </div>
+     </div>
+     <div class="col-md-4">
+		 <h4>{% with next_classes_2|first as first_class %}{{ first_class.day_of_week }}{% endwith %}</h4>
+     	 <div class="events">
+			 {% for next_class in next_classes_2 %}
+     	 	<div class="event-top">
+	     	 	<ul class="event1">
+	     	 		<img src={{ next_class.course.img.url }} />
+	     	 	</ul>
+	     	 	<ul class="event1_text">
+	     	 		<span class="m_5">h:{{ next_class.start_end_time}}</span>
+	     	 		<h6>{{ next_class.course }}</h6>
+	     	 		<p>{{ next_class.course.desc }}</p>
+	     	 		<div class="btn2">
+					   <a href="/classes/">Register</a>
+					</div>
+	     	 	</ul>
+     	 		<div class="clear"></div>
+     	 	</div>
+			 {% endfor %}
+     	 </div>
+     </div>
+     <div class="clear"></div>
+     </div>
+      {% include 'gallerypartners.html' %}
+	     </div>
+		</div>
+	    <div class="map">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3320.7369541658127!2d-112.1253741847952!3d33.66397708071354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b6f3e9a381229%3A0x78586ffe3cb3170!2s3010%20W%20Yorkshire%20Dr%2C%20Phoenix%2C%20AZ%2085027%2C%20USA!5e0!3m2!1sen!2suk!4v1624485841741!5m2!1sen!2suk" width="100%" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br/>
+			<!-- iframe width="100%" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=United+Kingdom&amp;aq=0&amp;oq=un&amp;sll=37.0625,-95.677068&amp;sspn=48.956293,107.138672&amp;ie=UTF8&amp;hq=&amp;hnear=United+Kingdom&amp;ll=55.378051,-3.435973&amp;spn=135.795411,68.554687&amp;t=m&amp;z=2&amp;output=embed"> </iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=United+Kingdom&amp;aq=0&amp;oq=un&amp;sll=37.0625,-95.677068&amp;sspn=48.956293,107.138672&amp;ie=UTF8&amp;hq=&amp;hnear=United+Kingdom&amp;ll=55.378051,-3.435973&amp;spn=135.795411,68.554687&amp;t=m&amp;z=2" style="color:#666;font-size:12px;text-align:left"> </a></small -->
+			<div class="opening_hours">
+			 <ul class="times">
+			 	<h3>Opening <span class="opening">Hours</span></h3>
+			 	<li><i class="calender"> </i><span class="week">Monday</span><div class="hours">h.6:00-h.24:00</div>  <div class="clear"></div></li>
+			 	<li><i class="calender"> </i><span class="week">Tuesday</span><div class="hours">h.6:00-h.24:00</div>  <div class="clear"></div></li>
+			 	<li><i class="calender"> </i><span class="week">Wednesday</span><div class="hours">h.6:00-h.24:00</div>  <div class="clear"></div></li>
+			 	<li><i class="calender"> </i><span class="week">Thrusday</span><div class="hours">h.6:00-h.24:00</div>  <div class="clear"></div></li>
+			 	<li><i class="calender"> </i><span class="week">Friday</span><div class="hours">h.6:00-h.24:00</div>  <div class="clear"></div></li>
+			 	<li><i class="calender"> </i><span class="week">Saturday</span><div class="hours">h.6:00-h.24:00</div>  <div class="clear"></div></li>
+			 	<li><i class="calender"> </i><span class="week">Sunday</span><div class="hours">h.6:00-h.24:00</div>  <div class="clear"></div></li>
+			    <p>Exercise is a blessing, not a chore. I workout because I am grateful that I physically can. So do not miss for single day and...</p>
+			 	<h4>Enjoy it!</h4>
+			 </ul>
+		    </div>
+		 </div>
+		 <!-- div class="footer-top">
+		 	<ul class="twitter_footer">
+		 	 <li>
+		 	   <i class="twt_icon"> </i><p>aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel  <span class="m_6">2 days ago</span></p>
+		 	   <div class="clear"></div>
+		 	 </li>
+		 	</ul>
+		 </div -->
+		 {% include 'footer.html' %}
+{% endblock %}
+</body>
+</html>

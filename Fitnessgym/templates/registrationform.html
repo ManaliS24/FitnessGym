@@ -1,0 +1,141 @@
+{% load static %}
+<html>
+<head>
+<title>Free Gym Website Template | Registration :: w3layouts</title>
+<!--link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script!-->
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+  <style>
+    body {
+     background-color: #428bca;
+     background-size: cover;
+}
+
+*[role="form"] {
+    max-width: 530px;
+    padding: 15px;
+    margin: 0 auto;
+    border-radius: 0.3em;
+    background-color: #f2f2f2;
+}
+
+*[role="form"] h2 {
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: #000000;
+    margin-top: 5%;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+  </style>
+  <script>
+    $(function(){
+	$.validator.setDefaults({
+		highlight: function(element){
+			$(element)
+			.closest('.form-group')
+			.addClass('has-error')
+		},
+		unhighlight: function(element){
+			$(element)
+			.closest('.form-group')
+			.removeClass('has-error')
+		}
+	});
+
+	$.validate({
+		rules:
+		{
+			birthDate: "required",
+			weight: {
+			    required:true,
+			    number:true
+			},
+			height:  {
+			    required:true,
+			    number:true
+			},
+			email: {
+				required: true,
+				email: true
+			}
+		},
+			messages:{
+				email: {
+				required: true,
+				email: true
+			}
+		},
+				birthDate: {
+					required: " Please enter birthdate"
+				},
+				email: {
+					required: ' Please enter email',
+					email: ' Please enter valid email'
+				},
+				weight: {
+					required: " Please enter your weight",
+					number: " Only numbers allowed"
+				},
+				height: {
+					required: " Please enter your height",
+					number: " Only numbers allowed"
+				},
+			}
+
+	});
+});
+  </script>
+</head>
+<body onload="selectType()">
+{% block content %}
+{% csrf_token %}
+<!-- start header_bottom -->
+<div class="header-bottom">
+<div class="container">
+            <form class="form-horizontal" role="form" method="POST" action="">
+                {% csrf_token %}
+                <h2>Registration</h2>
+                {{ form.as_p}}
+                <input type="submit" value="Register" class="btn btn-primary btn-block"></input>
+            </form> <!-- /form -->
+    <p id="demo"></p>
+        <script>
+                function typeChange(){
+                        let target = document.getElementById('type').value;
+
+                        if (target == 'plans' ) {
+
+                            document.getElementById('opt1').style.removeProperty('display')
+                            document.getElementById('opt2').style.display='none'
+                        }
+                        if (target == 'class' ) {
+
+                            document.getElementById('opt1').style.display='none'
+                            document.getElementById('opt2').style.removeProperty('display')
+                        }
+                }
+                function selectType(){
+
+                    if("{{type}}" == 'plan'){
+                        document.getElementById('type').options[0].selected = true;
+                    }
+                    else {
+                        document.getElementById('type').options[1].selected = true;
+                    }
+                    typeChange()
+                }
+        </script>
+        </div> <!-- ./container -->
+</div>
+{% endblock %}
+</body>
+</html>

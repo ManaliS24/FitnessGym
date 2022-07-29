@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+<img src={{ trainer.img.url }} /><br/>
+{{ trainer.name}}<br/>
+{{ trainer.desc}}<br/>
+{% for course in trainer.course_set.all %}
+   {% if forloopCounter > 1 %}
+        &nbsp;And
+{% endif %}
+    {{ course.name}}
+{% endfor %}<br/>
+{% endblock %}
+</body>
+</html>

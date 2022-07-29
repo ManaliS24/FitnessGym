@@ -1,0 +1,59 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+{% load static %}
+
+<html>
+<head>
+<title>Free Gym Website Template | Trainers :: w3layouts</title>
+<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}" />
+</head>
+<body>
+{% block content %}
+{% csrf_token %}
+<!-- start header_bottom -->
+
+
+	  <!-- start menu -->
+    <div class="menu">
+	  <div class="container">
+		 <div class="logo">
+			<a href="index.html"><img src="{% static 'images/logo.png' %}" alt=""/></a>
+		 </div>
+
+		 <div class="clear"></div>
+	  </div>
+	</div>
+	<!-- end menu -->
+	<div class="main">
+	  <div class="about_banner_img"><img src="{% static 'images/trine_img.jpg' %}" class="img-responsive" alt=""></div>
+		<div class="about_banner_wrap">
+      	    <h1 class="m_11">{{ trainer.name }}</h1>
+      	</div>
+       <div class="border"> </div>
+       <div class="container">
+       	<div class="sap_tabs" style="text-align: center;">
+				<div class="resp-tabs-container">
+					<img src={{ trainer.img.url}} alt="Ratna">
+				</div>
+				<div class="resp-tabs-container">
+					{{ trainer.desc }}
+				</div>
+
+	        </div>
+      </div>
+      </div>
+
+
+{% endblock %}
+</body>
+</html>

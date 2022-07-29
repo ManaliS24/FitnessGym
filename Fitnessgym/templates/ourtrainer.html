@@ -1,0 +1,44 @@
+{% load static %}
+
+<div class="col-md-4">
+		        <h3 class="m_2">Our Trainers</h3>
+		         <div class="course_demo">
+		          <ul id="flexiselDemo3">
+					  {% for trainer in trainers %}
+					  <li><div class="card">
+  						<img src={{ trainer.img.url }} width="100" height="100" >
+  							<div class="desc" style="word-wrap:break-word">
+    							<h5>{{ trainer.name }}<br><span class="m_text">{{ trainer.course.name }}</span> </h5>
+    							<p style="word-break:break-all">{{ trainer.desc }}</p>
+  							</div>
+					</div></li>
+					  {% endfor %}
+				</ul>
+				<script type="text/javascript">
+			$(window).load(function() {
+				$("#flexiselDemo3").flexisel({
+					animationSpeed: 1000,
+					autoPlay: false,
+					autoPlaySpeed: 3000,
+					pauseOnHover: true,
+					enableResponsiveBreakpoints: true,
+			    	responsiveBreakpoints: {
+			    		portrait: {
+			    			changePoint:480,
+			    			visibleItems: 1
+			    		},
+			    		landscape: {
+			    			changePoint:640,
+			    			visibleItems: 2
+			    		},
+			    		tablet: {
+			    			changePoint:768,
+			    			visibleItems: 2
+			    		}
+			    	}
+			    });
+			});
+		</script>
+		<script type="text/javascript" src="{% static 'js/jquery.flexisel.js' %}"></script>
+	  </div>
+     </div>

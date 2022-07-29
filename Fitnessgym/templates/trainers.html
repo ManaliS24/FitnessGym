@@ -1,0 +1,123 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+{% load static %}
+
+<html>
+<head>
+<title>Free Gym Website Template | Trainers :: w3layouts</title>
+<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<!-- grid-slider -->
+<script type="text/javascript" src="{% static 'js/jquery.mousewheel.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.contentcarousel.js' %}"></script>
+<!-- //grid-slider -->
+<!---calender-style---->
+<link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}" />
+<!---//calender-style---->
+</head>
+<body>
+{% block content %}
+{% csrf_token %}
+<!-- start header_bottom -->
+	  <div class="header-bottom">
+		 <div class="container">
+			<div class="header-bottom_left">
+				<i class="phone"> </i><span>1-200-346-2986</span>
+			</div>
+			<div class="social">
+			   <ul>
+				  <li class="facebook"><a href="#"><span> </span></a></li>
+				  <li class="twitter"><a href="#"><span> </span></a></li>
+				  <li class="pinterest"><a href="#"><span> </span></a></li>
+				  <li class="google"><a href="#"><span> </span></a></li>
+				  <li class="tumblr"><a href="#"><span> </span></a></li>
+				  <li class="instagram"><a href="#"><span> </span></a></li>
+				  <li class="rss"><a href="#"><span> </span></a></li>
+			   </ul>
+		   </div>
+		   <div class="clear"></div>
+		</div>
+	  </div>
+	  <!-- start menu -->
+    <div class="menu">
+	  <div class="container">
+		 <div class="logo">
+			<a href="index.html"><img src="{% static 'images/logo.png' %}" alt=""/></a>
+		 </div>
+		 {% include "menu_bar.html" %}
+		 <div class="clear"></div>
+	  </div>
+	</div>
+	<!-- end menu -->
+	<div class="main">
+	  <div class="about_banner_img"><img src="{% static 'images/trine_img.jpg' %}" class="img-responsive" alt=""></div>
+		<div class="about_banner_wrap">
+      	    <h1 class="m_11">Trainers</h1>
+      	</div>
+       <div class="border"> </div>
+       <div class="container">
+       	<div class="sap_tabs">
+			<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+			  <ul class="resp-tabs-list">
+				  {% for course in courses %}
+			  	  <li class="resp-tab-item" aria-controls={{course.name}} role="tab"><span>{{ course.name }}</span></li>
+				  {% endfor %}
+				  <div class="clear"></div>
+			  </ul>
+				<div class="resp-tabs-container">
+					{% for course in courses %}
+				      <div class="tab-1 resp-tab-content" aria-labelledby={{course.name}}>
+						  <div style="text-align: center;">
+							  {% if course.trainer %}
+							  <a href= '{% url 'trainerprofile' course.trainer.name %}'>
+							  <img src={{ course.trainer.img.url}} width="500" height="500" style="position:center">
+								  </a>
+							  <div>
+								  <h5>{{course.trainer.name}}</h5>
+								  <p>{{course.trainer.desc}}</p>
+								  <a href="#">sign in </a>
+							  </div>
+							  {% else %}
+							  <div>
+								  <p>We are hiring.</p>
+								  <a href="#">Apply Now </a>
+							  </div>
+							  {% endif %}
+
+						  </div>
+		    </div>
+					{% endfor %}
+				</div>
+		       </div>
+	        </div>
+	        <script src="{% static 'js/easyResponsiveTabs.js' %}" type="text/javascript"></script>
+		    <script type="text/javascript">
+			    $(document).ready(function () {
+			        $('#horizontalTab').easyResponsiveTabs({
+			            type: 'default', //Types: default, vertical, accordion
+			            width: 'auto', //auto or any width like 600px
+			            fit: true   // 100% fit in a container
+			        });
+			    });
+			   </script>
+			<div class="row trainers_middle_bottom">
+        <div class="clear"></div>
+       </div>
+      </div>
+      {% include 'login.html' %}
+	  {% include 'gallerypartners.html' %}
+      </div>
+	{% include 'footer.html' %}
+{% endblock %}
+</body>
+</html>

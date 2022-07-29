@@ -1,0 +1,75 @@
+{% load static %}
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<!-- Add fancyBox main JS and CSS files -->
+		<script src="{% static 'js/jquery.magnific-popup.js' %}" type="text/javascript"></script>
+		<link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" type="text/css">
+		<script>
+			$(document).ready(function() {
+				$('.popup-with-zoom-anim').magnificPopup({
+					type: 'inline',
+					fixedContentPos: false,
+					fixedBgPos: true,
+					overflowY: 'auto',
+					closeBtnInside: true,
+					preloader: false,
+					midClick: true,
+					removalDelay: 300,
+					mainClass: 'my-mfp-zoom-in'
+			});
+		});
+		</script>
+<link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}" />
+<div class="row classes_bottom">
+		      <div class="col-md-8">
+		     	 <h3 class="m_2">All Classes</h3>
+		     	 <div class="classes">
+		     	 	<div class="cardio_list">
+						{% for course in courses %}
+						{% if not forloop.counter|divisibleby:2 %}
+		     	 	  <div class="cardio_sublist">
+			     	 	<ul class="cardio">
+			     	 		<li><a href="/timetable/"> <i class="clock"> </i></a><span>{{ course.name }}:${{ course.price }} per month</span></li>
+			     	 	</ul>
+			     	 	<div class="social-media">
+						     <ul>
+						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="join"><a href="{% url 'registration' name=course.name type='course' %}"></a></span></li>
+						    </ul>
+					     </div>
+			     	 	 <div class="clear"></div>
+		     	 	  </div>
+						{% endif %}
+						{% endfor %}
+		     	 	</div>
+		     	 	<div class="cardio_list1">
+						{% for course in courses %}
+						{% if forloop.counter|divisibleby:2 %}
+		     	 	  <div class="cardio_sublist">
+			     	 	<ul class="cardio">
+			     	 		<li><a href="/timetable/"> <i class="clock"> </i></a><span>{{ course.name }}:${{ course.price }} per month</span></li>
+			     	 	</ul>
+			     	 	<div class="social-media">
+						     <ul>
+						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="join"><a href="{% url 'registration' name=course.name type='course' %}"></a></span></li>
+						    </ul>
+					   </div>
+			     	 	<div class="clear"></div>
+		     	 	  </div>
+		     	 	  {% endif %}
+						{% endfor %}
+		     	 	</div>
+		     	 	<div class="clear"></div>
+		     	 </div>
+				</div>
+				<div class="col-md-4">
+				  <h3 class="m_4">Membership Prices</h3>
+				  <div class="members">
+				   <h4 class="m_3">25% Discount of for all members</h4>
+				   <p>Discount on services and <br>treatments at the GymBase for<br> all membership cards holders.</p>
+				   <div class="btn1">
+				    <a href="#">More</a>
+			       </div>
+				  </div>
+			    </div>
+			    <div class="clear"></div>
+			</div>

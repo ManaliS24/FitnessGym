@@ -1,0 +1,28 @@
+{% load static %}
+
+<div class="row content-middle">
+		      <!-- start content-middle -->
+				{% for plan in plans %}
+				 <div class="col-md-4">
+	 	    		<ul class="spinning">
+	 	    			<li class="live">Plan <span class="m_1">{{ plan.name }}</span></li>
+	 	    			<!--li class="room">Room 1</li-->
+	 	    			<div class="clear"></div>
+	 	    		</ul>
+					 <a href="/pricing/">
+					 <div class="view view-fifth">
+				  	   <img src={{ plan.img.url }} class="img-responsive" alt=""/>
+					      <div class="mask">
+	                       	<div class="info">Read More</div>
+			              </div>
+	                  </div>
+			     </a>
+				 <ul class="spinning">
+	 	    			<li style="color:white"> <span class="m_1">{{ plan.desc }}</span></li>
+	 	    			<!--li class="room">Room 1</li-->
+	 	    			<div class="clear"></div>
+	 	    		</ul>
+				 </div>
+				{% endfor %}
+				<div class="clear"></div>
+		   </div>
